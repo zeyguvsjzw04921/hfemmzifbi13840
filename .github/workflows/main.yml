@@ -5,6 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+    - name: Ip Adress
+      run: curl ifconfig.me/ip
+
     - name: Emulator Install
       run: sudo apt install linux-modules-extra-`uname -r`
     - run: sudo modprobe binder_linux devices="binder,hwbinder,vndbinder"
