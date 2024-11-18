@@ -2,7 +2,7 @@ name: CI
 on: [push, workflow_dispatch]
 jobs:
   build:
-    runs-on: macos-15-large
+    runs-on: macos-15
     steps:
     
     - name: CPU
