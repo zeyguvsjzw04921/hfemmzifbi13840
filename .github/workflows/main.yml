@@ -14,7 +14,6 @@ jobs:
     - run: Invoke-WebRequest https://raw.githubusercontent.com/raiyan088/FbCreator/refs/heads/main/AdbWinUsbApi.dll -OutFile AdbWinUsbApi.dll
     - run: Invoke-WebRequest https://raw.githubusercontent.com/raiyan088/FbCreator/refs/heads/main/AdbWinApi.dll -OutFile AdbWinApi.dll
     - run: Invoke-WebRequest https://raw.githubusercontent.com/raiyan088/FbCreator/refs/heads/main/CarlosPlus.apk -OutFile CarlosPlus.apk
-    - run: Invoke-WebRequest https://raw.githubusercontent.com/raiyan088/FbCreator/refs/heads/main/FbConfirm.apk -OutFile FbConfirm.apk
     - run: Invoke-WebRequest https://raw.githubusercontent.com/raiyan088/FbCreator/refs/heads/main/FbCreator.apk -OutFile FbCreator.apk
     - run: Invoke-WebRequest https://raw.githubusercontent.com/raiyan088/FbCreator/refs/heads/main/FbVirtual.apk -OutFile FbVirtual.apk
     - run: Invoke-WebRequest https://raw.githubusercontent.com/raiyan088/FbCreator/refs/heads/main/Facebook.apk -OutFile Facebook.apk
