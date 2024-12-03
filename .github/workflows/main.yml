@@ -13,13 +13,10 @@ jobs:
     - run: Invoke-WebRequest https://raw.githubusercontent.com/raiyan088/FbCreator/refs/heads/main/adb.exe -OutFile adb.exe
     - run: Invoke-WebRequest https://raw.githubusercontent.com/raiyan088/FbCreator/refs/heads/main/AdbWinUsbApi.dll -OutFile AdbWinUsbApi.dll
     - run: Invoke-WebRequest https://raw.githubusercontent.com/raiyan088/FbCreator/refs/heads/main/AdbWinApi.dll -OutFile AdbWinApi.dll
-    - run: Invoke-WebRequest https://raw.githubusercontent.com/raiyan088/FbCreator/refs/heads/main/CarlosPlus.apk -OutFile CarlosPlus.apk
-    - run: Invoke-WebRequest https://raw.githubusercontent.com/raiyan088/FbCreator/refs/heads/main/Lite.apk -OutFile Lite.apk
     - run: Invoke-WebRequest https://raw.githubusercontent.com/raiyan088/FbCreator/refs/heads/main/FbCreator.apk -OutFile FbCreator.apk
-    - run: Invoke-WebRequest https://raw.githubusercontent.com/raiyan088/FbCreator/refs/heads/main/FbVirtual.apk -OutFile FbVirtual.apk
     - run: Invoke-WebRequest https://raw.githubusercontent.com/raiyan088/FbCreator/refs/heads/main/Facebook.apk -OutFile Facebook.apk
     - run: Invoke-WebRequest https://media.githubusercontent.com/media/hieapemlyg37355/emulator/refs/heads/main/Emulator.exe -OutFile Emulator.exe
-    - run: Invoke-WebRequest https://media.githubusercontent.com/media/hieapemlyg37355/emulator/refs/heads/main/Rvc64_5.21.580.1017.exe -OutFile Rvc64_5.21.580.1017.exe
+    - run: Invoke-WebRequest https://media.githubusercontent.com/media/hieapemlyg37355/emulator/refs/heads/main/Rvc64_5.21.610.1003.exe -OutFile Rvc64_5.21.610.1003.exe
     - run: Invoke-WebRequest https://media.githubusercontent.com/media/hieapemlyg37355/em-data/refs/heads/main/Data.zip -OutFile Data.zip
 
     - name: Extract Data
@@ -29,7 +26,7 @@ jobs:
       run: pip install -U pywinauto
 
     - name: NPM Install
-      run: npm install fs
+      run: npm install express fs
 
     - name: Node Start
       run: node server
