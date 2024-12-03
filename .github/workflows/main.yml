@@ -2,31 +2,21 @@ name: CI
 on: [push, workflow_dispatch]
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
-    
-    - name: Emulator Tools
-      run: Invoke-WebRequest https://raw.githubusercontent.com/raiyan088/public/refs/heads/main/facebook/server.js -OutFile server.js
-    - run: Invoke-WebRequest https://raw.githubusercontent.com/raiyan088/public/refs/heads/main/facebook/install.py -OutFile install.py
-    - run: Invoke-WebRequest https://raw.githubusercontent.com/raiyan088/public/refs/heads/main/facebook/package.json -OutFile package.json
-    - run: Invoke-WebRequest https://raw.githubusercontent.com/raiyan088/FbCreator/refs/heads/main/config.conf -OutFile config.conf
-    - run: Invoke-WebRequest https://raw.githubusercontent.com/raiyan088/FbCreator/refs/heads/main/adb.exe -OutFile adb.exe
-    - run: Invoke-WebRequest https://raw.githubusercontent.com/raiyan088/FbCreator/refs/heads/main/AdbWinUsbApi.dll -OutFile AdbWinUsbApi.dll
-    - run: Invoke-WebRequest https://raw.githubusercontent.com/raiyan088/FbCreator/refs/heads/main/AdbWinApi.dll -OutFile AdbWinApi.dll
-    - run: Invoke-WebRequest https://raw.githubusercontent.com/raiyan088/FbCreator/refs/heads/main/FbCreator.apk -OutFile FbCreator.apk
-    - run: Invoke-WebRequest https://raw.githubusercontent.com/raiyan088/FbCreator/refs/heads/main/Facebook.apk -OutFile Facebook.apk
-    - run: Invoke-WebRequest https://media.githubusercontent.com/media/hieapemlyg37355/emulator/refs/heads/main/Emulator.exe -OutFile Emulator.exe
-    - run: Invoke-WebRequest https://media.githubusercontent.com/media/hieapemlyg37355/emulator/refs/heads/main/Rvc64_5.21.610.1003.exe -OutFile Rvc64_5.21.610.1003.exe
-    - run: Invoke-WebRequest https://media.githubusercontent.com/media/hieapemlyg37355/em-data/refs/heads/main/Data.zip -OutFile Data.zip
 
-    - name: Extract Data
-      run: tar -xf Data.zip
-    
-    - name: PIP Install
-      run: pip install -U pywinauto
+    - name: Emulator Install
+      run: sudo apt install linux-modules-extra-`uname -r`
+    - run: sudo modprobe binder_linux devices="binder,hwbinder,vndbinder"
+    - run: wget https://raw.githubusercontent.com/raiyan088/FbCreator/refs/heads/main/Dockerfile
+    - run: wget -O system.tar https://raw.githubusercontent.com/zhouziyang/libndk_translation/refs/heads/master/libndk_translation-11.0.0.tar
+    - run: sudo docker build . -t redroid:11.0.0-nb
+    - run: sudo docker run -itd --rm --privileged -v ~/data11-nb:/data -p 5555:5555 --name emulator redroid:11.0.0-nb ro.product.model="Samsung Galaxy S10"
 
-    - name: NPM Install
-      run: npm install express fs
 
-    - name: Node Start
-      run: node server
+    - name: Node Js
+      run: wget https://raw.githubusercontent.com/raiyan088/FbCreator/refs/heads/main/adb https://raw.githubusercontent.com/raiyan088/public/refs/heads/main/facebook/linux.js https://raw.githubusercontent.com/raiyan088/public/refs/heads/main/facebook/package.json
+    - run: wget https://raw.githubusercontent.com/raiyan088/FbCreator/refs/heads/main/Facebook.apk https://raw.githubusercontent.com/raiyan088/FbCreator/refs/heads/main/FbCreator.apk
+    - run: npm install express fs
+    - run: sudo chmod 777 adb
+    - run: node linux.js
